@@ -1,11 +1,21 @@
-<div class="book" (click)="toggleCover()">
-  <span class="page" [class.turn]="isCoverOpen"></span>
-  <span class="page" [class.turn]="isCoverOpen"></span>
-  <span class="page" [class.turn]="isCoverOpen"></span>
-  <span class="page" [class.turn]="isCoverOpen"></span>
-  <span class="page" [class.turn]="isCoverOpen"></span>
-  <span class="page" [class.turn]="isCoverOpen"></span>
-  <span class="cover"></span>
-  <span class="page"></span>
-  <span class="cover" [class.turn]="isCoverOpen"></span>
+<div class="book-container">
+  <button class="nav-button prev-button" (click)="prevPage()">
+    <span class="arrow">&#9664;</span>
+  </button>
+
+  <div class="book">
+    <span class="page" [class.turn]="shouldTurn(1)" [class.close]="isClosing(1)"></span>
+    <span class="page" [class.turn]="shouldTurn(2)" [class.close]="isClosing(2)"></span>
+    <span class="page" [class.turn]="shouldTurn(3)" [class.close]="isClosing(3)"></span>
+    <span class="page" [class.turn]="shouldTurn(4)" [class.close]="isClosing(4)"></span>
+    <span class="page" [class.turn]="shouldTurn(5)" [class.close]="isClosing(5)"></span>
+    <span class="page" [class.turn]="shouldTurn(6)" [class.close]="isClosing(6)"></span>
+    <span class="cover"></span>
+    <span class="page"></span>
+    <span class="cover" [class.turn]="isCoverOpen" [class.close]="!isCoverOpen && closingPage === 1"></span>
+  </div>
+
+  <button class="nav-button next-button" (click)="nextPage()">
+    <span class="arrow">&#9654;</span>
+  </button>
 </div>
