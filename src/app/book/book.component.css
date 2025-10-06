@@ -81,6 +81,9 @@
   height: 28.5rem;  /* Reducida un 5%: de 30rem a 28.5rem */
   right: 0;
   left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .page {
@@ -241,6 +244,45 @@
   }
 }
 
+/* Fantasy Book Title Styles */
+.book-title {
+  text-align: center;
+  color: #e8d5b7;
+  font-family: "Playwrite DE SAS", cursive;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  transform: perspective(400px) rotateY(0deg);
+}
+
+.title-main {
+  font-size: 2.8rem;
+  font-weight: 200; /* Bolder for main title */
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 0.2rem;
+  color: #f0e6d2;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.title-sub {
+  font-size: 2rem;
+  font-weight: 200; /* Regular weight for subtitle */
+  margin: 0 0 1rem 0;
+  letter-spacing: 0.1rem;
+  color: #d4c8b0;
+  font-style: normal;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.title-decoration {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #f0e6d2;
+  letter-spacing: 0.5rem;
+  opacity: 0.8;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
 /* Responsive adjustments - heights reduced by 5% */
 /* Small phones */
 @media (max-width: 480px) {
@@ -260,6 +302,18 @@
     width: 10.7rem;
     height: 19.95rem;  /* Reducida un 5%: de 21rem a 19.95rem */
     font-size: 8px;
+  }
+
+  .title-main {
+    font-size: 1.5rem;
+  }
+
+  .title-sub {
+    font-size: 1.2rem;
+  }
+
+  .title-decoration {
+    font-size: 0.8rem;
   }
 }
 
@@ -282,6 +336,18 @@
     height: 24.51rem;  /* Reducida un 5%: de 25.8rem a 24.51rem */
     font-size: 10px;
   }
+
+  .title-main {
+    font-size: 2rem;
+  }
+
+  .title-sub {
+    font-size: 1.6rem;
+  }
+
+  .title-decoration {
+    font-size: 1rem;
+  }
 }
 
 /* Landscape orientation adjustments */
@@ -302,6 +368,18 @@
     width: 10.7rem;
     height: 17.67rem;  /* Reducida un 5%: de 18.6rem a 17.67rem */
     font-size: 8px;
+  }
+
+  .title-main {
+    font-size: 1.6rem;
+  }
+
+  .title-sub {
+    font-size: 1.3rem;
+  }
+
+  .title-decoration {
+    font-size: 0.9rem;
   }
 }
 
@@ -324,6 +402,18 @@
     height: 18.24rem;  /* Reducida un 5%: de 19.2rem a 18.24rem */
     font-size: 7px;
   }
+
+  .title-main {
+    font-size: 1.3rem;
+  }
+
+  .title-sub {
+    font-size: 1rem;
+  }
+
+  .title-decoration {
+    font-size: 0.7rem;
+  }
 }
 
 /* For large screens */
@@ -344,6 +434,18 @@
     width: 17.7rem;
     height: 33.63rem;  /* Reducida un 5%: de 35.4rem a 33.63rem */
     font-size: 14px;
+  }
+
+  .title-main {
+    font-size: 3.5rem;
+  }
+
+  .title-sub {
+    font-size: 2.8rem;
+  }
+
+  .title-decoration {
+    font-size: 1.8rem;
   }
 }
 
@@ -366,6 +468,18 @@
     height: 42.75rem;  /* Reducida un 5%: de 45rem a 42.75rem */
     font-size: 16px;
   }
+
+  .title-main {
+    font-size: 4.5rem;
+  }
+
+  .title-sub {
+    font-size: 3.6rem;
+  }
+
+  .title-decoration {
+    font-size: 2.2rem;
+  }
 }
 
 /* Media queries para responsividad */
@@ -385,4 +499,11 @@
     font-size: 1rem;
     margin: 0 0.5rem;
   }
+}
+
+.nav-button {
+  width: 2rem;
+  height: 2rem;
+  font-size: 1rem;
+  margin: 0 0.5rem;
 }

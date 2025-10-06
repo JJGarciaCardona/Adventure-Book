@@ -10,9 +10,21 @@
     <span class="page" [class.turn]="shouldTurn(4)" [class.close]="isClosing(4)"></span>
     <span class="page" [class.turn]="shouldTurn(5)" [class.close]="isClosing(5)"></span>
     <span class="page" [class.turn]="shouldTurn(6)" [class.close]="isClosing(6)"></span>
-    <span class="cover"></span>
+    <span class="cover">
+      <div class="book-title">
+        <h1 class="title-main">Our Adventure</h1>
+        <h2 class="title-sub">Book</h2>
+        <div class="title-decoration">JJ</div>
+      </div>
+    </span>
     <span class="page"></span>
-    <span class="cover" [class.turn]="isCoverOpen" [class.close]="!isCoverOpen && closingPage === 1"></span>
+    <span class="cover" [class.turn]="isCoverOpen" [class.close]="!isCoverOpen && closingPage === 1">
+      <div class="book-title">
+        <h1 class="title-main">Our Adventure</h1>
+        <h2 class="title-sub">Book</h2>
+        <div class="title-decoration">JJ</div>
+      </div>
+    </span>
   </div>
 
   <button class="nav-button next-button" (click)="nextPage()">
