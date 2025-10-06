@@ -1,1 +1,12 @@
-<p>page works!</p>
+<div class="page-container" [class.left-page]="position === 'left'" [class.right-page]="position === 'right'">
+  <div class="page">
+    @if (images && images.length > 0) {
+      @for (image of images; track $index) {
+        <img src="{{image}}" alt="Page image">
+      }
+    }
+    @if (content) {
+      <p>{{content}}</p>
+    }
+  </div>
+</div>

@@ -4,21 +4,17 @@
   </button>
 
   <div class="book" [class.open]="isCoverOpen">
-    <span class="page" [class.turn]="shouldTurn(1)" [class.close]="isClosing(1)"></span>
-    <span class="page" [class.turn]="shouldTurn(2)" [class.close]="isClosing(2)"></span>
-    <span class="page" [class.turn]="shouldTurn(3)" [class.close]="isClosing(3)"></span>
-    <span class="page" [class.turn]="shouldTurn(4)" [class.close]="isClosing(4)"></span>
-    <span class="page" [class.turn]="shouldTurn(5)" [class.close]="isClosing(5)"></span>
-    <span class="page" [class.turn]="shouldTurn(6)" [class.close]="isClosing(6)"></span>
     <span class="cover">
-      <div class="book-title">
-        <h1 class="title-main">Our Adventure</h1>
-        <h2 class="title-sub">Book</h2>
-        <div class="title-decoration">JJ</div>
-      </div>
     </span>
-    <span class="page"></span>
-    <span class="cover" [class.turn]="isCoverOpen" [class.close]="!isCoverOpen && closingPage === 1">
+
+    @if (isCoverOpen) {
+      <div class="pages">
+        <app-page  [position]="'left'" [isCollage]="false" [images]="['images/cards/liston.webp']" />
+        <app-page  [position]="'right'" [content]="'No importa el tiempo, no importa la distancia, no importar el lugar, estamos destinados a encontrarnos'" />
+      </div>
+    }
+
+    <span class="cover" [class.turn]="isCoverOpen" [class.close]="!isCoverOpen && !initialState">
       <div class="book-title">
         <h1 class="title-main">Our Adventure</h1>
         <h2 class="title-sub">Book</h2>

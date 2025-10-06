@@ -1,3 +1,14 @@
+:host {
+  --book-width: 30rem;
+  --book-height: 28.5rem;
+  --cover-width: calc(var(--book-width) / 2);
+  --primary-color: #3a2321; /* Dark brown leather color */
+  --text-color: #e8d5b7;
+  --text-color-main: #f0e6d2;
+  --text-color-sub: #d4c8b0;
+  --nav-button-size: 3rem;
+}
+
 /* Contenedor para el libro y los botones */
 .book-container {
   position: absolute;
@@ -5,9 +16,10 @@
   bottom: 0;
   left: 0;
   right: 0;
-  display: flex; /* Re-añadido para centrar */
-  align-items: center; /* Re-añadido para centrar */
-  justify-content: center; /* Re-añadido para centrar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5dc; /* Beige background */
 }
 
 /* Botones de navegación */
@@ -15,13 +27,13 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 6rem; /* Aumentado el tamaño */
-  height: 6rem; /* Aumentado el tamaño */
-  background-color: #36354e;
+  width: var(--nav-button-size);
+  height: var(--nav-button-size);
+  background-color: var(--primary-color);
   border: none;
   border-radius: 50%;
   color: white;
-  font-size: 2rem; /* Aumentado el tamaño de la flecha */
+  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,7 +41,7 @@
   z-index: 1000;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s, background-color 0.2s, opacity 0.2s;
-  opacity: 0.3; /* Cambiada la opacidad a 50% */
+  opacity: 0.3;
 }
 
 .nav-button.prev-button {
@@ -41,28 +53,37 @@
 }
 
 .nav-button:hover {
-  transform: translateY(-50%) scale(1.1); /* Ajustado para mantener la posición vertical */
+  transform: translateY(-50%) scale(1.1);
 }
 
 .nav-button:active {
-  transform: translateY(-50%) scale(0.95); /* Ajustado para mantener la posición vertical */
+  transform: translateY(-50%) scale(0.95);
 }
 
 .arrow {
   display: inline-block;
 }
 
+.pages {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
 /* Estilos del libro */
 .book {
   position: relative;
-  width: 30rem;
-  height: 28.5rem;
+  width: var(--book-width);
+  height: var(--book-height);
   perspective: 100rem;
-  transform: translateX(-6.3rem);
+  transform: translateX(calc(var(--cover-width) * -0.5)); /* -6.3rem / 15rem = -0.42 */
   transition: transform 0.8s ease-in-out;
 }
 .book.open {
-  transform: translateX(-1rem);
+  transform: translateX(calc(var(--cover-width) * -0.067)); /* -1rem / 15rem = -0.067 */
 }
 
 .close{
@@ -75,119 +96,32 @@
 }
 
 .cover {
-  background-color: #36354e;
-  transform: rotateY(0deg);
-  width: 15rem;
-  height: 28.5rem;  /* Reducida un 5%: de 30rem a 28.5rem */
+  position: absolute;
+  background-color: var(--primary-color);
+  width: var(--cover-width);
+  height: var(--book-height);
   right: 0;
   left: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.page {
-  top: 0.3rem;
-  left: auto;
-  right: -0.3rem;
-  background-color: #e9e6c4;
-  transform: rotateY(0deg);
-  width: 14.7rem;
-  height: 27.84rem;  /* Reducida un 5%: de 29.3rem a 27.84rem */
-  text-align: right;
-  font-size: 12px;
-  color: #777;
-  font-family: monospace;
-}
-
-.page::before,
-.page::after {
-  display: block;
-  border-top: 1px dashed rgba(0, 0, 0, 0.3);
-  content: "";
-  padding-bottom: 1rem;
-}
-
-.cover,
-.page {
-  position: absolute;
   padding: 1rem;
   transform-origin: left center;
   border-radius: 0 5px 5px 0;
   box-shadow: inset -3px 0px 20px rgba(0, 0, 0, 0.2),
     0px 0px 15px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+  transform: rotateY(0deg);
+  z-index: 10;
 }
 
-/* Animaciones básicas para cover y page con clase turn */
 .cover.turn {
   animation: bookCover 3s forwards;
 }
 
-.page.turn {
-  animation: bookOpen 3s forwards;
-}
 
-/* Animaciones para cerrar */
 .cover.close {
   animation: bookCoverClose 3s forwards;
-}
-
-.page.close {
-  animation: bookClose 3s forwards;
-}
-
-/* Reemplazar los selectores nth-of-type con selectores que incluyan la clase turn */
-.page.turn:nth-of-type(1) {
-  animation-delay: 0.05s;
-}
-
-.page.turn:nth-of-type(2) {
-  animation-delay: 0.33s
-}
-
-.page.turn:nth-of-type(3) {
-  animation-delay: 0.66s;
-}
-
-.page.turn:nth-of-type(4) {
-  animation: bookOpen150deg 3s forwards;
-  animation-delay: 0.99s;
-}
-
-.page.turn:nth-of-type(5) {
-  animation: bookOpen30deg 3s forwards;
-  animation-delay: 1.2s;
-}
-
-.page.turn:nth-of-type(6) {
-  animation: bookOpen55deg 3s forwards;
-  animation-delay: 1.25s;
-}
-
-@keyframes bookOpen {
-  30% {
-    z-index: 999
-  }
-
-  100% {
-    transform: rotateY(-180deg);
-    z-index: 999;
-  }
-}
-
-@keyframes bookClose {
-  0% {
-    transform: rotateY(-180deg);
-    z-index: 990; /* Ligeramente inferior a la cubierta */
-  }
-  70% {
-    z-index: 990;
-  }
-  100% {
-    transform: rotateY(0deg);
-    z-index: 1;
-  }
 }
 
 @keyframes bookCover {
@@ -211,43 +145,10 @@
   }
 }
 
-@keyframes bookOpen150deg {
-  30% {
-    z-index: 999
-  }
-
-  100% {
-    transform: rotateY(-150deg);
-    z-index: 999;
-  }
-}
-
-@keyframes bookOpen55deg {
-  30% {
-    z-index: 999
-  }
-
-  100% {
-    transform: rotateY(-55deg);
-    z-index: 999;
-  }
-}
-
-@keyframes bookOpen30deg {
-  50% {
-    z-index: 999
-  }
-
-  100% {
-    transform: rotateY(-30deg);
-    z-index: 999;
-  }
-}
-
 /* Fantasy Book Title Styles */
 .book-title {
   text-align: center;
-  color: #e8d5b7;
+  color: var(--text-color);
   font-family: "Playwrite DE SAS", cursive;
   font-optical-sizing: auto;
   font-weight: 200;
@@ -260,7 +161,7 @@
   font-weight: 200; /* Bolder for main title */
   margin: 0 0 0.5rem 0;
   letter-spacing: 0.2rem;
-  color: #f0e6d2;
+  color: var(--text-color-main);
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
@@ -269,7 +170,7 @@
   font-weight: 200; /* Regular weight for subtitle */
   margin: 0 0 1rem 0;
   letter-spacing: 0.1rem;
-  color: #d4c8b0;
+  color: var(--text-color-sub);
   font-style: normal;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
@@ -277,233 +178,105 @@
 .title-decoration {
   font-size: 1.5rem;
   font-weight: 400;
-  color: #f0e6d2;
+  color: var(--text-color-main);
   letter-spacing: 0.5rem;
   opacity: 0.8;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-/* Responsive adjustments - heights reduced by 5% */
+/* Responsive adjustments */
 /* Small phones */
 @media (max-width: 480px) {
+  :host {
+    --book-width: 22rem;
+    --book-height: 20.52rem;
+  }
   .book {
-    width: 22rem;
-    height: 20.52rem;  /* Reducida un 5%: de 21.6rem a 20.52rem */
-    margin-left: calc(50% - 11rem);
     perspective: 70rem;
   }
-
-  .cover {
-    width: 11rem;
-    height: 20.52rem;  /* Reducida un 5%: de 21.6rem a 20.52rem */
-  }
-
   .page {
     width: 10.7rem;
-    height: 19.95rem;  /* Reducida un 5%: de 21rem a 19.95rem */
+    height: 19.95rem;
     font-size: 8px;
   }
-
-  .title-main {
-    font-size: 1.5rem;
-  }
-
-  .title-sub {
-    font-size: 1.2rem;
-  }
-
-  .title-decoration {
-    font-size: 0.8rem;
-  }
+  .title-main { font-size: 1.5rem; }
+  .title-sub { font-size: 1.2rem; }
+  .title-decoration { font-size: 0.8rem; }
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 481px) and (max-width: 767px) {
+  :host {
+    --book-width: 26rem;
+    --book-height: 25.08rem;
+  }
   .book {
-    width: 26rem;
-    height: 25.08rem;  /* Reducida un 5%: de 26.4rem a 25.08rem */
-    margin-left: calc(50% - 13rem);
     perspective: 85rem;
   }
-
-  .cover {
-    width: 13rem;
-    height: 25.08rem;  /* Reducida un 5%: de 26.4rem a 25.08rem */
-  }
-
   .page {
     width: 12.7rem;
-    height: 24.51rem;  /* Reducida un 5%: de 25.8rem a 24.51rem */
+    height: 24.51rem;
     font-size: 10px;
   }
-
-  .title-main {
-    font-size: 2rem;
-  }
-
-  .title-sub {
-    font-size: 1.6rem;
-  }
-
-  .title-decoration {
-    font-size: 1rem;
-  }
+  .title-main { font-size: 2rem; }
+  .title-sub { font-size: 1.6rem; }
+  .title-decoration { font-size: 1rem; }
 }
 
 /* Landscape orientation adjustments */
 @media (max-height: 500px) and (orientation: landscape) {
+  :host {
+    --book-width: 22rem;
+    --book-height: 18.24rem;
+  }
   .book {
-    width: 22rem;
-    height: 18.24rem;  /* Reducida un 5%: de 19.2rem a 18.24rem */
-    margin-left: calc(50% - 11rem);
     perspective: 70rem;
   }
-
-  .cover {
-    width: 11rem;
-    height: 18.24rem;  /* Reducida un 5%: de 19.2rem a 18.24rem */
-  }
-
   .page {
     width: 10.7rem;
-    height: 17.67rem;  /* Reducida un 5%: de 18.6rem a 17.67rem */
+    height: 17.67rem;
     font-size: 8px;
   }
-
-  .title-main {
-    font-size: 1.6rem;
-  }
-
-  .title-sub {
-    font-size: 1.3rem;
-  }
-
-  .title-decoration {
-    font-size: 0.9rem;
-  }
+  .title-main { font-size: 1.6rem; }
+  .title-sub { font-size: 1.3rem; }
+  .title-decoration { font-size: 0.9rem; }
 }
 
 /* For very small screens */
 @media (max-width: 360px) {
+  :host {
+    --book-width: 20rem;
+    --book-height: 18.81rem;
+  }
   .book {
-    width: 20rem;
-    height: 18.81rem;  /* Reducida un 5%: de 19.8rem a 18.81rem */
-    margin-left: calc(50% - 10rem);
     perspective: 65rem;
   }
-
-  .cover {
-    width: 10rem;
-    height: 18.81rem;  /* Reducida un 5%: de 19.8rem a 18.81rem */
-  }
-
   .page {
     width: 9.7rem;
-    height: 18.24rem;  /* Reducida un 5%: de 19.2rem a 18.24rem */
+    height: 18.24rem;
     font-size: 7px;
   }
-
-  .title-main {
-    font-size: 1.3rem;
-  }
-
-  .title-sub {
-    font-size: 1rem;
-  }
-
-  .title-decoration {
-    font-size: 0.7rem;
-  }
+  .title-main { font-size: 1.3rem; }
+  .title-sub { font-size: 1rem; }
+  .title-decoration { font-size: 0.7rem; }
 }
 
 /* For large screens */
 @media (min-width: 1200px) {
+  :host {
+    --book-width: 36rem;
+    --book-height: 34.2rem;
+  }
   .book {
-    width: 36rem;
-    height: 34.2rem;  /* Reducida un 5%: de 36rem a 34.2rem */
-    margin-left: calc(50% - 18rem);
     perspective: 120rem;
   }
-
-  .cover {
-    width: 18rem;
-    height: 34.2rem;  /* Reducida un 5%: de 36rem a 34.2rem */
-  }
-
   .page {
     width: 17.7rem;
-    height: 33.63rem;  /* Reducida un 5%: de 35.4rem a 33.63rem */
+    height: 33.63rem;
     font-size: 14px;
   }
-
-  .title-main {
-    font-size: 3.5rem;
-  }
-
-  .title-sub {
-    font-size: 2.8rem;
-  }
-
-  .title-decoration {
-    font-size: 1.8rem;
-  }
+  .title-main { font-size: 2.5rem; }
+  .title-sub { font-size: 2.8rem; }
+  .title-decoration { font-size: 1.8rem; }
 }
 
-/* For extra large screens */
-@media (min-width: 1600px) {
-  .book {
-    width: 44rem;
-    height: 43.32rem;  /* Reducida un 5%: de 45.6rem a 43.32rem */
-    margin-left: calc(50% - 22rem);
-    perspective: 150rem;
-  }
-
-  .cover {
-    width: 22rem;
-    height: 43.32rem;  /* Reducida un 5%: de 45.6rem a 43.32rem */
-  }
-
-  .page {
-    width: 21.7rem;
-    height: 42.75rem;  /* Reducida un 5%: de 45rem a 42.75rem */
-    font-size: 16px;
-  }
-
-  .title-main {
-    font-size: 4.5rem;
-  }
-
-  .title-sub {
-    font-size: 3.6rem;
-  }
-
-  .title-decoration {
-    font-size: 2.2rem;
-  }
-}
-
-/* Media queries para responsividad */
-@media (max-width: 768px) {
-  .nav-button {
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 1.2rem;
-    margin: 0 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .nav-button {
-    width: 2rem;
-    height: 2rem;
-    font-size: 1rem;
-    margin: 0 0.5rem;
-  }
-}
-
-.nav-button {
-  width: 2rem;
-  height: 2rem;
-  font-size: 1rem;
-  margin: 0 0.5rem;
-}
