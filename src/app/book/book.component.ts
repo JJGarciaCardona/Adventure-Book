@@ -9,15 +9,35 @@ import { CommonModule } from '@angular/common';
   styleUrl: './book.component.css',
 })
 export class BookComponent implements AfterViewInit {
+  private currentPage = 0;
+  private totalPages = 5;
+
   ngAfterViewInit(): void {
-    const book = document.getElementById('book');
-    if (book) {
-      book.addEventListener('click', function () {
-        this.style.pointerEvents = 'none';
-        setTimeout(() => {
-          this.style.pointerEvents = '';
-        }, 2000);
-      });
+    // Remove the click event listener to disable book clicking
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.updatePageState();
     }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+      this.updatePageState();
+    }
+  }
+
+  private updatePageState(): void {
+    const pageIds = ['one', 'two', 'three', 'four', 'five'];
+
+    pageIds.forEach((pageId, index) => {
+      const checkbox = document.getElementById(pageId) as HTMLInputElement;
+      if (checkbox) {
+        checkbox.checked = index < this.currentPage;
+      }
+    });
   }
 }
