@@ -1,29 +1,37 @@
-<div class="book-container">
-  <button class="nav-button prev-button" (click)="prevPage()">
-    <span class="arrow">&#9664;</span>
-  </button>
+<div id="book">
 
-  <div class="book" [class.open]="isCoverOpen">
-    <span class="cover">
-    </span>
-
-    @if (isCoverOpen) {
-      <div class="pages">
-        <app-page  [position]="'left'" [isCollage]="false" [images]="['images/cards/liston.webp']" />
-        <app-page  [position]="'right'" [content]="'No importa el tiempo, no importa la distancia, no importar el lugar, estamos destinados a encontrarnos'" />
-      </div>
-    }
-
-    <span class="cover" [class.turn]="isCoverOpen" [class.close]="!isCoverOpen && !initialState">
-      <div class="book-title">
-        <h1 class="title-main">Our Adventure</h1>
-        <h2 class="title-sub">Book</h2>
-        <div class="title-decoration">JJ</div>
-      </div>
-    </span>
+  <input type="checkbox" id="five">
+  <div id="page5" class="page">
+    <div class="front">T</div>
+    <div class="back">TEBAHPLA</div>
+    <label for="five"></label>
   </div>
 
-  <button class="nav-button next-button" (click)="nextPage()">
-    <span class="arrow">&#9654;</span>
-  </button>
+  <input type="checkbox" id="four">
+  <div id="page4" class="page">
+    <div class="front">B</div>
+    <div class="back">E</div>
+    <label for="four"></label>
+  </div>
+
+  <input type="checkbox" id="three">
+  <div id="page3" class="page">
+    <div class="front">H</div>
+    <div class="back">A</div>
+    <label for="three"></label>
+  </div>
+
+  <input type="checkbox" id="two">
+  <div id="page2" class="page">
+    <div class="front">L</div>
+    <div class="back">P</div>
+    <label for="two"></label>
+  </div>
+
+  <input type="checkbox" id="one">
+  <div id="page1" class="page">
+    <div class="front">ALPHABET</div>
+    <div class="back">A</div>
+    <label for="one"></label>
+  </div>
 </div>
