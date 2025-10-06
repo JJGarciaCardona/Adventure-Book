@@ -189,7 +189,6 @@
 @keyframes bookCoverClose {
   0% {
     transform: rotateY(-180deg);
-    z-index: 999; /* Siempre por encima de la página que se cierra */
   }
   100% {
     transform: rotateY(0deg);
