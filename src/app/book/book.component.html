@@ -3,7 +3,7 @@
     <span class="arrow">&#9664;</span>
   </button>
 
-  <div class="book">
+  <div class="book" [class.open]="isCoverOpen">
     <span class="page" [class.turn]="shouldTurn(1)" [class.close]="isClosing(1)"></span>
     <span class="page" [class.turn]="shouldTurn(2)" [class.close]="isClosing(2)"></span>
     <span class="page" [class.turn]="shouldTurn(3)" [class.close]="isClosing(3)"></span>
