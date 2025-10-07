@@ -182,16 +182,32 @@ body {
 }
 
 #page1 .back {
-  font-size: 20vh;
-  color: white;
-  text-shadow: -10px 0px magenta, 10px 0px cyan;
-  background: #222;
-  animation: a 3s linear infinite;
+  background: #f8f8f0;
+  padding: 0;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+#page1 .back img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 85%;
+  max-height: 75%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 6px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
 }
 
 @media (min-width: 768px) {
-  #page1 .back {
-    font-size: 25vh;
+  #page1 .back img {
+    max-width: 80%;
+    max-height: 70%;
+    border: 8px solid white;
   }
 }
 
@@ -210,23 +226,60 @@ body {
 }
 
 #page2 .front {
-  font-size: 20vh;
-  font-family: serif;
-  font-weight: 900;
-  background: dodgerblue;
-  animation: L 10s linear infinite;
+  background: #f8f8f0;
+  font-family: 'Courier New', monospace;
+  font-size: 2.5vh;
+  font-weight: 400;
+  color: #333;
+  padding: 0;
+  line-height: 1.6;
+  text-align: center;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
 }
+
+#page2 .front div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%;
+  text-align: left;
+  padding: 2vh;
+}
+
+#page2 .front::before {
+  content: '';
+  position: absolute;
+  top: 2vh;
+  left: 2vh;
+  right: 2vh;
+  bottom: 2vh;
+  border-radius: 4px;
+  opacity: 0.3;
+}
+
 
 @media (min-width: 768px) {
   #page2 .front {
-    font-size: 25vh;
+    font-size: 3vh;
   }
-}
 
-@keyframes L {
-  50% {
-    color: dodgerblue;
-    background: white;
+  #page2 .front div {
+    width: 80%;
+  }
+
+  #page2 .front::before {
+    top: 3vh;
+    left: 3vh;
+    right: 3vh;
+    bottom: 3vh;
+  }
+
+  #page2 .front::after {
+    bottom: 10vh;
+    right: 8vh;
+    font-size: 5vh;
   }
 }
 
@@ -509,6 +562,102 @@ body {
     line-height: 50vh;
     padding-left: 2vh;
   }
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  width: 95vw;
+  height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-body {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-body > * {
+  width: 100% !important;
+  height: 100% !important;
+  position: static !important; /* Change from absolute to static */
+  transform: none !important;
+  opacity: 1 !important;
+  display: flex !important; /* Use flex to center content */
+  align-items: center;
+  justify-content: center;
+  line-height: normal; /* Reset line-height */
+  font-size: 6vmin; /* Responsive font size */
+  padding: 2vmin;
+  box-sizing: border-box;
+  color: white !important; /* Make text white */
+}
+
+/* Ensure animations on direct children are not overridden */
+.modal-body > [class*="front"],
+.modal-body > [class*="back"] {
+    animation: none; /* Reset animations on container */
+}
+
+.modal-body > * * {
+    animation: inherit; /* Allow children to inherit animations */
+}
+
+.modal-body .back {
+    transform: scaleX(1) !important; /* Correct mirrored text */
+}
+
+.modal-body img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    position: static !important;
+    transform: none !important;
+}
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /* Navigation buttons */
