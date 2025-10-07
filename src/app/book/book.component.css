@@ -33,6 +33,11 @@
   transform: translate(-50%, -50%);
 }
 
+/* Book fully open state */
+#book:has(#five:checked) {
+  transform: translate(-50%, -50%) translateX(10vh);
+}
+
 #book:before {
   width: 1%;
   height: 100%;
@@ -163,21 +168,46 @@ body {
 
 /* Mobile responsive adjustments for interior pages */
 #page1 .front {
-  font-size: 1.5vh;
-  letter-spacing: 1.5vh;
-  line-height: 60vh;
-  font-weight: 900;
-  text-align: right;
-  background: radial-gradient(circle at 70% 50%, black 50%, #222 40%);
-  color: magenta;
-  animation: cover 10s linear infinite;
+  background-color: #4a4a4a;
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233a3a3a' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  color: #f0e6d2;
+  line-height: normal;
+}
+
+
+.book-title {
+  font-family: 'Garamond', 'Times New Roman', serif;
+  font-size: 4vh;
+  font-weight: normal;
+  margin: 0;
+  letter-spacing: 0.1em;
+}
+
+.author {
+  font-family: 'Brush Script MT', 'cursive';
+  font-size: 3.5vh;
+  margin-top: 10px;
+  opacity: 0.9;
 }
 
 @media (min-width: 768px) {
   #page1 .front {
-    font-size: 2vh;
-    letter-spacing: 2vh;
-    line-height: 50vh;
+    line-height: normal;
+  }
+
+  .book-title {
+    font-size: 5vh;
+  }
+
+  .author {
+    font-size: 4vh;
   }
 }
 
