@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, ElementRef, Renderer2, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './book.component.html',
   styleUrl: './book.component.css',
 })
-export class BookComponent implements AfterViewInit {
+export class BookComponent implements AfterViewInit, OnDestroy {
   private currentPage = 0;
   private totalPages = 18; // Increased to 18 pages
   isModalOpen = false;
@@ -16,6 +16,8 @@ export class BookComponent implements AfterViewInit {
   currentImageIndex = 0;
   totalImages = 0;
   isCarouselModal = false;
+  showTutorial = true;
+  private tutorialTimeout: any;
   @ViewChild('modalBody', { static: false }) modalBody!: ElementRef;
 
   constructor(private renderer: Renderer2) {}
@@ -27,9 +29,45 @@ export class BookComponent implements AfterViewInit {
       video.muted = true;
       video.volume = 0;
     });
+
+    // Show tutorial only on mobile devices and hide after 4 seconds
+    this.initTutorial();
+  }
+
+  private initTutorial(): void {
+    // Check if tutorial was already shown
+    const tutorialShown = localStorage.getItem('bookTutorialShown');
+
+    if (!tutorialShown && this.isMobileDevice()) {
+      this.showTutorial = true;
+
+      // Auto-hide tutorial after 4 seconds
+      this.tutorialTimeout = setTimeout(() => {
+        this.hideTutorial();
+      }, 4000);
+    } else {
+      this.showTutorial = false;
+    }
+  }
+
+  private isMobileDevice(): boolean {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+  }
+
+  hideTutorial(): void {
+    this.showTutorial = false;
+    localStorage.setItem('bookTutorialShown', 'true');
+
+    if (this.tutorialTimeout) {
+      clearTimeout(this.tutorialTimeout);
+    }
   }
 
   nextPage(): void {
+    if (this.showTutorial) {
+      this.hideTutorial();
+    }
+
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
       this.updatePageState();
@@ -37,6 +75,10 @@ export class BookComponent implements AfterViewInit {
   }
 
   previousPage(): void {
+    if (this.showTutorial) {
+      this.hideTutorial();
+    }
+
     if (this.currentPage > 0) {
       this.currentPage--;
       this.updatePageState();
@@ -44,6 +86,11 @@ export class BookComponent implements AfterViewInit {
   }
 
   openModal(pageNumber: number): void {
+    // Hide tutorial when user interacts with the book
+    if (this.showTutorial) {
+      this.hideTutorial();
+    }
+
     const pageIds = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen'];
     const pageId = `page${pageNumber}`;
     const checkboxId = pageIds[pageNumber - 1];
@@ -139,5 +186,11 @@ export class BookComponent implements AfterViewInit {
         checkbox.checked = index < this.currentPage;
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.tutorialTimeout) {
+      clearTimeout(this.tutorialTimeout);
+    }
   }
 }

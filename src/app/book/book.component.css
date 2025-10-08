@@ -54,6 +54,123 @@ body {
   outline: 1px solid black;
 }
 
+/* Tutorial visual styles */
+.tutorial-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+
+.tutorial-overlay.show {
+  display: flex;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.tutorial-hint {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  pointer-events: none;
+}
+
+.tap-indicator {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.hand-icon {
+  font-size: 3rem;
+  z-index: 2;
+  position: relative;
+  animation: bounce 1.5s infinite;
+}
+
+.pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.tutorial-text {
+  font-size: 1.1rem;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile adjustments for tutorial */
+@media (max-width: 768px) {
+  .hand-icon {
+    font-size: 2.5rem;
+  }
+
+  .pulse-ring {
+    width: 70px;
+    height: 70px;
+  }
+
+  .tutorial-text {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+}
+
 /* Page styles */
 .page {
   width: 50%;

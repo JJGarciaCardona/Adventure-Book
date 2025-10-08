@@ -30,6 +30,17 @@
   </div>
 </div>
 
+<!-- Tutorial visual para móviles -->
+<div class="tutorial-overlay" [class.show]="showTutorial" (click)="hideTutorial()">
+  <div class="tutorial-hint">
+    <div class="tap-indicator">
+      <div class="hand-icon">👆</div>
+      <div class="pulse-ring"></div>
+    </div>
+    <p class="tutorial-text">Toca las páginas para verlas completas</p>
+  </div>
+</div>
+
 <div id="book">
 
   <input type="checkbox" id="eighteen">
@@ -154,7 +165,7 @@ que se disuelve en el olvido.</div>
     <div class="front">
       <div>Es como lanzar una piedra a la luna:
 mi corazón insiste en que su lugar está a tu lado.
-Pero también entiende
+Y no entiende
 que no siempre podemos estar
 donde creemos que pertenecemos.</div>
     </div>
@@ -254,7 +265,7 @@ y cada vez era decidir quedarme contigo.</div>
   <input type="checkbox" id="four">
   <div id="page4" class="page" (click)="openModal(4)">
     <div class="front">
-      <div>En ese instante me resguardo and no me entristezco
+      <div>En ese instante me resguardo y no me entristezco
                       porque ahora seas solo un recuerdo;
                       me alegra que haya pasado,
                       y doy gracias por ello.
