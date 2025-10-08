@@ -50,12 +50,12 @@ export class BookComponent implements AfterViewInit, OnDestroy {
   }
 
   private initTutorial(): void {
-    // Check if tutorial was already shown
-    const tutorialShown = localStorage.getItem('bookTutorialShown');
+    // Check if tutorial was already shown in this session
+    const tutorialShown = sessionStorage.getItem('bookTutorialShown');
 
     // Show tutorial if:
     // 1. User is on mobile device AND
-    // 2. (Tutorial hasn't been shown OR user is coming from access page)
+    // 2. (Tutorial hasn't been shown in this session OR user is coming from access page)
     if (this.isMobileDevice() && (!tutorialShown || this.fromAccessPage)) {
       this.showTutorial = true;
 
@@ -74,7 +74,7 @@ export class BookComponent implements AfterViewInit, OnDestroy {
 
   hideTutorial(): void {
     this.showTutorial = false;
-    localStorage.setItem('bookTutorialShown', 'true');
+    sessionStorage.setItem('bookTutorialShown', 'true');
 
     if (this.tutorialTimeout) {
       clearTimeout(this.tutorialTimeout);

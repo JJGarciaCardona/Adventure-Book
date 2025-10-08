@@ -16,6 +16,16 @@
       if (sessionStorage.redirect) {
         var redirect = sessionStorage.redirect;
         delete sessionStorage.redirect;
+        
+        // Check if user is authenticated before redirecting
+        var isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+        
+        // If trying to access protected route and not authenticated, don't redirect
+        if (redirect.includes('/fotos-de-las-fotos') && !isAuthenticated) {
+          // Let Angular handle the routing naturally (will redirect to /acceso)
+          return;
+        }
+        
         l.replace(redirect);
       }
     }(window.location))
@@ -32,5 +42,5 @@
 </script>
 <body>
   <app-root></app-root>
-<script src="polyfills-B6TNHZQ6.js" type="module"></script><script src="main-JKZEJC7G.js" type="module"></script></body>
+<script src="polyfills-B6TNHZQ6.js" type="module"></script><script src="main-KW5EYSYK.js" type="module"></script></body>
 </html>
