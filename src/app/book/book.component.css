@@ -310,7 +310,7 @@ body {
 #page2 .front {
   background: #f8f8f0;
   font-family: 'Courier New', monospace;
-  font-size: 2.5vh;
+  font-size: 1.6vh;
   font-weight: 400;
   color: #333;
   padding: 0;
@@ -328,23 +328,16 @@ body {
   width: 85%;
   text-align: left;
   padding: 2vh;
+  white-space: pre-wrap;
 }
 
 #page2 .front::before {
-  content: '';
-  position: absolute;
-  top: 2vh;
-  left: 2vh;
-  right: 2vh;
-  bottom: 2vh;
-  border-radius: 4px;
-  opacity: 0.3;
+  content: none;
 }
-
 
 @media (min-width: 768px) {
   #page2 .front {
-    font-size: 3vh;
+    font-size: 2vh;
   }
 
   #page2 .front div {
@@ -352,16 +345,11 @@ body {
   }
 
   #page2 .front::before {
-    top: 3vh;
-    left: 3vh;
-    right: 3vh;
-    bottom: 3vh;
+    content: none;
   }
 
   #page2 .front::after {
-    bottom: 10vh;
-    right: 8vh;
-    font-size: 5vh;
+    content: none;
   }
 }
 
@@ -705,6 +693,51 @@ body {
   }
 }
 
+/* Two image collage styles for pages with only 2 images */
+#page7 .back img, #page8 .back img, #page9 .back img, #page10 .back img,
+#page11 .back img, #page12 .back img, #page13 .back img, #page14 .back img {
+  max-width: 65% !important;
+  max-height: 65% !important;
+}
+
+#page7 .back img:nth-child(1), #page8 .back img:nth-child(1), #page9 .back img:nth-child(1), #page10 .back img:nth-child(1),
+#page11 .back img:nth-child(1), #page12 .back img:nth-child(1), #page13 .back img:nth-child(1), #page14 .back img:nth-child(1) {
+  top: 5% !important;
+  left: 5% !important;
+  transform: rotate(-8deg) !important;
+  max-width: 50% !important;
+  max-height: 50% !important;
+  z-index: 1 !important;
+}
+
+#page7 .back img:nth-child(2), #page8 .back img:nth-child(2), #page9 .back img:nth-child(2), #page10 .back img:nth-child(2),
+#page11 .back img:nth-child(2), #page12 .back img:nth-child(2), #page13 .back img:nth-child(2), #page14 .back img:nth-child(2) {
+  top: auto !important;
+  bottom: 5% !important;
+  left: auto !important;
+  right: 5% !important;
+  transform: rotate(8deg) !important;
+  max-width: 50% !important;
+  max-height: 50% !important;
+  z-index: 2 !important;
+}
+
+@media (min-width: 768px) {
+  #page7 .back img:nth-child(1), #page8 .back img:nth-child(1), #page9 .back img:nth-child(1), #page10 .back img:nth-child(1),
+  #page11 .back img:nth-child(1), #page12 .back img:nth-child(1), #page13 .back img:nth-child(1), #page14 .back img:nth-child(1) {
+    max-width: 45% !important;
+    max-height: 45% !important;
+    top: 8% !important;
+  }
+
+  #page7 .back img:nth-child(2), #page8 .back img:nth-child(2), #page9 .back img:nth-child(2), #page10 .back img:nth-child(2),
+  #page11 .back img:nth-child(2), #page12 .back img:nth-child(2), #page13 .back img:nth-child(2), #page14 .back img:nth-child(2) {
+    max-width: 45% !important;
+    max-height: 45% !important;
+    bottom: 8% !important;
+  }
+}
+
 /* Styles for new pages 6-17 */
 #page6 .front, #page7 .front, #page8 .front, #page9 .front, #page10 .front,
 #page11 .front, #page12 .front, #page13 .front, #page14 .front, #page15 .front, #page16 .front, #page17 .front {
@@ -718,6 +751,30 @@ body {
   text-align: center;
   box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
   overflow: hidden;
+}
+
+#page6 .front div, #page7 .front div, #page8 .front div, #page9 .front div, #page10 .front div,
+#page11 .front div, #page12 .front div, #page13 .front div, #page14 .front div, #page15 .front div, #page16 .front div, #page17 .front div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%;
+  text-align: left;
+  padding: 2vh;
+  white-space: pre-wrap;
+}
+
+@media (min-width: 768px) {
+  #page6 .front, #page7 .front, #page8 .front, #page9 .front, #page10 .front,
+  #page11 .front, #page12 .front, #page13 .front, #page14 .front, #page15 .front, #page16 .front, #page17 .front {
+    font-size: 2vh;
+  }
+
+  #page6 .front div, #page7 .front div, #page8 .front div, #page9 .front div, #page10 .front div,
+  #page11 .front div, #page12 .front div, #page13 .front div, #page14 .front div, #page15 .front div, #page16 .front div, #page17 .front div {
+    width: 80%;
+  }
 }
 
 #page6 .back, #page7 .back, #page8 .back, #page9 .back, #page10 .back,
@@ -802,6 +859,17 @@ body {
   overflow: hidden;
 }
 
+#page18 .front div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%;
+  text-align: left;
+  padding: 2vh;
+  white-space: pre-wrap;
+}
+
 #page18 .back {
   font-size: 1.5vh;
   letter-spacing: 1.5vh;
@@ -815,15 +883,29 @@ body {
 }
 
 @media (min-width: 768px) {
-  #page18 .front {
-    font-size: 2vh;
-  }
-
   #page18 .back {
     font-size: 2vh;
     letter-spacing: 2vh;
     line-height: 50vh;
     padding-left: 2vh;
+  }
+}
+
+@keyframes cover {
+  0% {
+    color: magenta;
+  }
+  25% {
+    color: cyan;
+  }
+  50% {
+    color: yellow;
+  }
+  75% {
+    color: lime;
+  }
+  100% {
+    color: magenta;
   }
 }
 
@@ -1119,3 +1201,126 @@ body {
     padding: 6px 12px;
   }
 }
+
+/* Override general styles for pages that don't have 3 images */
+#page6 .back img:nth-child(3), #page16 .back img:nth-child(3), #page17 .back img:nth-child(3) {
+  display: none;
+}
+
+/* Specific styling for page 6 front text (longer content) */
+#page6 .front {
+  font-size: 1.3vh !important;
+}
+
+#page6 .front div {
+  padding: 1.5vh !important;
+}
+
+@media (min-width: 768px) {
+  #page6 .front {
+    font-size: 1.7vh !important;
+  }
+
+  #page6 .front div {
+    padding: 2vh !important;
+  }
+}
+
+/* Page 16 single image styles */
+#page16 .back img {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  max-width: 80% !important;
+  max-height: 80% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border: 6px solid white !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  border-radius: 4px !important;
+  z-index: 1 !important;
+}
+
+@media (min-width: 768px) {
+  #page16 .back img {
+    max-width: 75% !important;
+    max-height: 75% !important;
+    border: 8px solid white !important;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4) !important;
+  }
+}
+
+/* Page 17 video styles */
+#page17 .back {
+  background: #f8f8f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+#page17 .back video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 85%;
+  max-height: 85%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 6px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  background: #000;
+}
+
+#page17 .back video::-webkit-media-controls {
+  display: none !important;
+}
+
+#page17 .back video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+  #page17 .back {
+    padding: 20px;
+  }
+
+  #page17 .back video {
+    max-width: 80%;
+    max-height: 80%;
+    border: 8px solid white;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Modal video styles */
+.modal-body video {
+  max-width: 90% !important;
+  max-height: 90% !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  position: static !important;
+  transform: none !important;
+  border: 8px solid white !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+  border-radius: 8px !important;
+  background: #000 !important;
+}
+
+.modal-body video::-webkit-media-controls {
+  display: none !important;
+}
+
+.modal-body video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+

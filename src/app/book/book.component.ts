@@ -21,7 +21,12 @@ export class BookComponent implements AfterViewInit {
   constructor(private renderer: Renderer2) {}
 
   ngAfterViewInit(): void {
-    // Remove the click event listener to disable book clicking
+    // Ensure all videos are muted on page load
+    const videos = document.querySelectorAll('video');
+    videos.forEach((video: HTMLVideoElement) => {
+      video.muted = true;
+      video.volume = 0;
+    });
   }
 
   nextPage(): void {
@@ -54,7 +59,7 @@ export class BookComponent implements AfterViewInit {
 
         // Check if this is a page with carousel mode (pages 2, 3, 4, 5 back)
         this.isCarouselModal = ((pageNumber === 2 || pageNumber === 3 || pageNumber === 4 || pageNumber === 5) && checkbox.checked) ||
-                             ((pageNumber >= 6 && pageNumber <= 17) && checkbox.checked);
+                             ((pageNumber >= 6 && pageNumber <= 16) && checkbox.checked);
 
         if (this.isCarouselModal) {
           const images = this.modalContent.querySelectorAll('img');
@@ -65,6 +70,20 @@ export class BookComponent implements AfterViewInit {
         this.isModalOpen = true;
         setTimeout(() => {
           this.renderer.appendChild(this.modalBody.nativeElement, this.modalContent);
+
+          // Handle video autoplay in modal and ensure it's muted
+          const videos = this.modalBody.nativeElement.querySelectorAll('video');
+          videos.forEach((video: HTMLVideoElement) => {
+            video.muted = true;
+            video.volume = 0;
+            video.loop = true;
+            video.autoplay = true;
+            video.controls = false;
+            video.play().catch(() => {
+              // Handle autoplay failure silently
+            });
+          });
+
           if (this.isCarouselModal) {
             this.updateCarousel();
           }
