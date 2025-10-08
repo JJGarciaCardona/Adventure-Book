@@ -10,26 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <style>@font-face{font-family:'Playwrite DE SAS';font-style:normal;font-weight:100 400;font-display:swap;src:url(https://fonts.gstatic.com/s/playwritedesas/v11/1Pt1g9vaRvmWghDdrE8IDuRPVrHN5V4.woff2) format('woff2');}</style>
   <style>@font-face{font-family:'Caveat';font-style:normal;font-weight:400 700;font-display:swap;src:url(https://fonts.gstatic.com/s/caveat/v23/Wnz6HAc5bAfYB2Q7azYYmg8.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}@font-face{font-family:'Caveat';font-style:normal;font-weight:400 700;font-display:swap;src:url(https://fonts.gstatic.com/s/caveat/v23/Wnz6HAc5bAfYB2Q7YjYYmg8.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}@font-face{font-family:'Caveat';font-style:normal;font-weight:400 700;font-display:swap;src:url(https://fonts.gstatic.com/s/caveat/v23/Wnz6HAc5bAfYB2Q7aDYYmg8.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}@font-face{font-family:'Caveat';font-style:normal;font-weight:400 700;font-display:swap;src:url(https://fonts.gstatic.com/s/caveat/v23/Wnz6HAc5bAfYB2Q7ZjYY.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}</style>
-  <script>
-    // GitHub Pages SPA redirect recovery script
-    (function(l) {
-      if (sessionStorage.redirect) {
-        var redirect = sessionStorage.redirect;
-        delete sessionStorage.redirect;
-        
-        // Check if user is authenticated before redirecting
-        var isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-        
-        // If trying to access protected route and not authenticated, don't redirect
-        if (redirect.includes('/fotos-de-las-fotos') && !isAuthenticated) {
-          // Let Angular handle the routing naturally (will redirect to /acceso)
-          return;
-        }
-        
-        l.replace(redirect);
-      }
-    }(window.location))
-  </script>
 <style>body{background:#3d2a4a;background-image:radial-gradient(circle at 25% 25%,rgba(180,140,200,.12) 0%,transparent 50%),radial-gradient(circle at 75% 75%,rgba(160,120,180,.08) 0%,transparent 50%),linear-gradient(135deg,#3d2a4a,#4a3356,#3d2a4a);background-attachment:fixed}</style><link rel="stylesheet" href="styles-6UI2X4VB.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-6UI2X4VB.css"></noscript></head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WCPPR0BZ1L"></script>

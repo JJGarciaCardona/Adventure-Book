@@ -10,26 +10,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playwrite+DE+SAS:wght@100..400&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-  <script>
-    // GitHub Pages SPA redirect recovery script
-    (function(l) {
-      if (sessionStorage.redirect) {
-        var redirect = sessionStorage.redirect;
-        delete sessionStorage.redirect;
-
-        // Check if user is authenticated before redirecting
-        var isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-
-        // If trying to access protected route and not authenticated, don't redirect
-        if (redirect.includes('/fotos-de-las-fotos') && !isAuthenticated) {
-          // Let Angular handle the routing naturally (will redirect to /acceso)
-          return;
-        }
-
-        l.replace(redirect);
-      }
-    }(window.location))
-  </script>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WCPPR0BZ1L"></script>
