@@ -13,12 +13,10 @@
   <script>
     // GitHub Pages SPA redirect recovery script
     (function(l) {
-      if (l.search[1] === '/' ) {
-        var decoded = sessionStorage.redirect || '';
+      if (sessionStorage.redirect) {
+        var redirect = sessionStorage.redirect;
         delete sessionStorage.redirect;
-        if (decoded) {
-          l.replace(decoded);
-        }
+        l.replace(redirect);
       }
     }(window.location))
   </script>
