@@ -31,7 +31,7 @@ export class AccessComponent {
       const isAuthenticated = this.authService.login(this.password);
 
       if (isAuthenticated) {
-        this.router.navigate(['/fotos-de-las-fotos']);
+        this.router.navigate(['/fotos-de-las-fotos'], { queryParams: { fromAccess: 'true' } });
       } else {
         this.errorMessage = 'Clave incorrecta. Intenta nuevamente.';
         this.password = '';

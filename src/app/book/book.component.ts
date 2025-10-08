@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ViewChild, ElementRef, Renderer2, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-book',
@@ -18,9 +19,23 @@ export class BookComponent implements AfterViewInit, OnDestroy {
   isCarouselModal = false;
   showTutorial = true;
   private tutorialTimeout: any;
+  private fromAccessPage: boolean = false;
   @ViewChild('modalBody', { static: false }) modalBody!: ElementRef;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, private route: ActivatedRoute, private router: Router) {
+    // Check if we're coming from the access page via query parameter
+    this.route.queryParams.subscribe(params => {
+      this.fromAccessPage = params['fromAccess'] === 'true';
+      // Clean up the URL by removing the query parameter
+      if (this.fromAccessPage) {
+        this.router.navigate([], {
+          relativeTo: this.route,
+          queryParams: {},
+          replaceUrl: true
+        });
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
     // Ensure all videos are muted on page load
@@ -38,7 +53,10 @@ export class BookComponent implements AfterViewInit, OnDestroy {
     // Check if tutorial was already shown
     const tutorialShown = localStorage.getItem('bookTutorialShown');
 
-    if (!tutorialShown && this.isMobileDevice()) {
+    // Show tutorial if:
+    // 1. User is on mobile device AND
+    // 2. (Tutorial hasn't been shown OR user is coming from access page)
+    if (this.isMobileDevice() && (!tutorialShown || this.fromAccessPage)) {
       this.showTutorial = true;
 
       // Auto-hide tutorial after 4 seconds
