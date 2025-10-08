@@ -1,0 +1,215 @@
+/* Access component with Book-inspired design - Simplified */
+/* Global overflow fix */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+.access-container {
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile */
+  width: 100%;
+  overflow: hidden;
+  background: #3d2a4a;
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(180, 140, 200, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(160, 120, 180, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, #3d2a4a 0%, #4a3356 50%, #3d2a4a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 1rem;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+.access-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 1.2rem;
+  width: calc(100% - 2rem);
+  max-width: 380px;
+  max-height: calc(100vh - 4rem);
+  max-height: calc(100dvh - 4rem);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  margin: 1rem;
+  overflow: hidden;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.header h1 {
+  color: #3d2a4a;
+  font-size: 1.8rem;
+  font-weight: normal;
+  margin: 0 0 0.5rem 0;
+}
+
+.header p {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #3d2a4a;
+  font-size: 0.9rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #3d2a4a;
+}
+
+.input-field.error {
+  border-color: #e74c3c;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.8rem;
+  margin-bottom: 0.8rem;
+  text-align: center;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background: #3d2a4a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #4a3356;
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.loading-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.hint {
+  text-align: center;
+  margin-top: 0.8rem;
+  padding: 0.5rem;
+  background-color: rgba(61, 42, 74, 0.1);
+  border-radius: 4px;
+}
+
+.hint small {
+  color: #666;
+  font-size: 0.8rem;
+}
+
+/* Small mobile devices */
+@media (max-width: 360px) {
+  .access-container {
+    padding: 0.5rem;
+  }
+
+  .access-card {
+    width: calc(100% - 1rem);
+    padding: 0.8rem;
+    margin: 0.5rem;
+    max-height: calc(100vh - 2rem);
+    max-height: calc(100dvh - 2rem);
+  }
+
+  .header h1 {
+    font-size: 1.4rem;
+  }
+
+  .header {
+    margin-bottom: 0.8rem;
+  }
+
+  .input-group {
+    margin-bottom: 0.8rem;
+  }
+
+  .hint {
+    margin-top: 0.5rem;
+    padding: 0.4rem;
+  }
+}
+
+/* Portrait mobile */
+@media (max-height: 600px) {
+  .access-card {
+    padding: 1rem;
+    max-height: calc(100vh - 2rem);
+    max-height: calc(100dvh - 2rem);
+  }
+
+  .header {
+    margin-bottom: 0.8rem;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .input-group {
+    margin-bottom: 0.8rem;
+  }
+
+  .hint {
+    margin-top: 0.6rem;
+  }
+}
+
+/* Mobile landscape and tablet */
+@media (min-width: 768px) {
+  .access-card {
+    max-width: 450px;
+    padding: 2rem;
+  }
+}

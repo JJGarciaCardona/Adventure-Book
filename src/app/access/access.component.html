@@ -1,0 +1,42 @@
+<div class="access-container">
+  <div class="access-card">
+    <div class="header">
+      <p>Ingresa la clave para continuar</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <div class="input-group">
+        <label for="password" style="display: none;">Clave:</label>
+        <input
+          type="text"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          (keypress)="onKeyPress($event)"
+          placeholder="Ingresa la fecha especial..."
+          class="input-field"
+          [class.error]="errorMessage"
+          [disabled]="isLoading"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <button
+        type="submit"
+        class="submit-btn"
+        [disabled]="isLoading || !password.trim()"
+        [class.loading]="isLoading"
+      >
+        <span *ngIf="!isLoading">Ingresar</span>
+        <span *ngIf="isLoading" class="loading-text">
+          <span class="spinner"></span>
+          Verificando...
+        </span>
+      </button>
+    </form>
+  </div>
+</div>
