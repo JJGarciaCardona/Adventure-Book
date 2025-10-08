@@ -12,38 +12,262 @@
 <div class="modal" [class.show]="isModalOpen" (click)="closeModal()">
   <div class="modal-content" (click)="$event.stopPropagation()">
     <span class="close-button" (click)="closeModal()">&times;</span>
-    <div class="modal-body" #modalBody></div>
+
+    <!-- Carousel controls for page 2 -->
+    <div *ngIf="isCarouselModal" class="carousel-controls">
+      <button class="carousel-btn carousel-btn-left" (click)="previousImage()" [disabled]="currentImageIndex === 0">
+        <span>‹</span>
+      </button>
+      <button class="carousel-btn carousel-btn-right" (click)="nextImage()" [disabled]="currentImageIndex === totalImages - 1">
+        <span>›</span>
+      </button>
+      <div class="carousel-indicator">
+        {{ currentImageIndex + 1 }} / {{ totalImages }}
+      </div>
+    </div>
+
+    <div class="modal-body" #modalBody [class.carousel-mode]="isCarouselModal"></div>
   </div>
 </div>
 
 <div id="book">
 
+  <input type="checkbox" id="eighteen">
+  <div id="page18" class="page" (click)="openModal(18)">
+    <div class="front">Página 18 Front</div>
+    <div class="back"></div>
+    <label for="eighteen"></label>
+  </div>
+
+  <input type="checkbox" id="seventeen">
+  <div id="page17" class="page" (click)="openModal(17)">
+    <div class="front">Front 17</div>
+    <div class="back">
+    </div>
+    <label for="seventeen"></label>
+  </div>
+
+  <input type="checkbox" id="sixteen">
+  <div id="page16" class="page" (click)="openModal(16)">
+    <div class="front">Lo siento, cada día quise decir: te quiero.
+Si vuelves, aquí estaré.
+Si no, seguirás siendo mi mejor milagro.</div>
+    <div class="back">
+    </div>
+    <label for="sixteen"></label>
+  </div>
+
+  <input type="checkbox" id="fifteen">
+  <div id="page15" class="page" (click)="openModal(15)">
+    <div class="front">Para mi corazón basta tu pecho,
+para tu libertad bastan mis alas,
+porque cuando nos amamos
+nos rompemos y nos reconstruimos.</div>
+    <div class="back">
+      <img src="images/j/30.webp" alt="">
+      <img src="images/j/32.webp" alt="">
+      <img src="images/j/33.webp" alt="">
+    </div>
+    <label for="fifteen"></label>
+  </div>
+
+  <input type="checkbox" id="fourteen">
+  <div id="page14" class="page" (click)="openModal(14)">
+    <div class="front">Aquí estaré,
+no para detenerte ni para pedirte que me ames,
+solo para recordarte
+que fuiste y eres esa parte de mí
+que ni el tiempo ni el adiós podrán borrar.</div>
+    <div class="back">
+      <img src="images/j/28.webp" alt="">
+      <img src="images/j/29.webp" alt="">
+    </div>
+    <label for="fourteen"></label>
+  </div>
+
+  <input type="checkbox" id="thirteen">
+  <div id="page13" class="page" (click)="openModal(13)">
+    <div class="front">Ven, y entiende que te necesito.
+Ahora sé mucho más de ti y de mí que antes.
+
+Por eso sé
+que perderte es morir de cierta manera.</div>
+    <div class="back">
+      <img src="images/j/26.webp" alt="">
+      <img src="images/j/27.webp" alt="">
+    </div>
+    <label for="thirteen"></label>
+  </div>
+
+  <input type="checkbox" id="twelve">
+  <div id="page12" class="page" (click)="openModal(12)">
+    <div class="front">No es algo que dé igual.
+Te quiero mucho.
+Eres importante.
+Siempre te desearé lo mejor.
+
+Y si alguien me pregunta
+qué significaste para mí,
+solo sabré decir que te adoré.</div>
+    <div class="back">
+      <img src="images/j/24.webp" alt="">
+      <img src="images/j/25.webp" alt="">
+    </div>
+    <label for="twelve"></label>
+  </div>
+
+  <input type="checkbox" id="eleven">
+  <div id="page11" class="page" (click)="openModal(11)">
+    <div class="front">Eres una persona muy especial para mí.
+No dejaste cicatrices,
+dejaste una firma en mi alma.
+
+No fue un amor fallido
+que se disuelve en el olvido.</div>
+    <div class="back">
+      <img src="images/j/22.webp" alt="">
+      <img src="images/j/23.webp" alt="">
+    </div>
+    <label for="eleven"></label>
+  </div>
+
+  <input type="checkbox" id="ten">
+  <div id="page10" class="page" (click)="openModal(10)">
+    <div class="front">Es como lanzar una piedra a la luna:
+mi corazón insiste en que su lugar está a tu lado.
+Pero también entiende
+que no siempre podemos estar
+donde creemos que pertenecemos.</div>
+    <div class="back">
+      <img src="images/j/20.webp" alt="">
+      <img src="images/j/21.webp" alt="">
+    </div>
+    <label for="ten"></label>
+  </div>
+
+  <input type="checkbox" id="nine">
+  <div id="page9" class="page" (click)="openModal(9)">
+    <div class="front">No me aferro a la costumbre ni a los recuerdos.
+Me aferro al amor que me tienes
+y al amor que yo te tengo.
+
+Y aunque sé que es momento de empezar de nuevo,
+y que quizá debí callar lo que siento,
+no puedo.</div>
+    <div class="back">
+      <img src="images/j/18.webp" alt="">
+      <img src="images/j/19.webp" alt="">
+    </div>
+    <label for="nine"></label>
+  </div>
+
+  <input type="checkbox" id="eight">
+  <div id="page8" class="page" (click)="openModal(8)">
+    <div class="front">Bastó una mirada tuya
+para que existas en un único pensamiento
+que ha durado más de seis años.
+
+Desde entonces, sigues conmigo.</div>
+    <div class="back">
+      <img src="images/j/16.webp" alt="">
+      <img src="images/j/17.webp" alt="">
+    </div>
+    <label for="eight"></label>
+  </div>
+
+  <input type="checkbox" id="seven">
+  <div id="page7" class="page" (click)="openModal(7)">
+    <div class="front">He sido víctima de este pensamiento,
+y aunque intento refugiarme en cualquier otra cosa,
+siempre vuelve.
+
+Porque, a pesar de no recordar cómo era estar contigo,
+nunca has salido de mis pensamientos</div>
+    <div class="back">
+      <img src="images/j/13.webp" alt="">
+      <img src="images/j/15.webp" alt="">
+    </div>
+    <label for="seven"></label>
+  </div>
+
+  <input type="checkbox" id="six">
+  <div id="page6" class="page" (click)="openModal(6)">
+    <div class="front">Nunca me acostumbré a ti,
+y tal vez por eso es que más te extraño.
+Cuando aún tenía la certeza de que te vería,
+me emocionaba, porque nunca me cansaba de ti.
+
+Era volver a enamorarme, volver a descubrirte,
+y cada vez era decidir quedarme contigo.</div>
+    <div class="back">
+      <img src="images/j/12.webp" alt="">
+      <img src="images/j/14.webp" alt="">
+    </div>
+    <label for="six"></label>
+  </div>
 
   <input type="checkbox" id="five">
   <div id="page5" class="page" (click)="openModal(5)">
-    <div class="front">T</div>
-    <div class="back"></div>
+    <div class="front">
+      <div>Al cerrar los ojos, todo llega:
+                      tu cabello, tus manos, tu sonrisa...
+                      Pero no llega el sonido de tu voz,
+                      ni el olor de tu perfume.
+
+                      Ya no recuerdo cómo se siente estar junto a ti.</div>
+    </div>
+    <div class="back">
+      <img src="images/j/10.webp" alt="">
+      <img src="images/j/11.webp" alt="">
+    </div>
     <label for="five"></label>
   </div>
 
   <input type="checkbox" id="four">
   <div id="page4" class="page" (click)="openModal(4)">
-    <div class="front">B</div>
-    <div class="back">E</div>
+    <div class="front">
+      <div>En ese instante me resguardo y no me entristezco
+                      porque ahora seas solo un recuerdo;
+                      me alegra que haya pasado,
+                      y doy gracias por ello.
+
+                      Como una vez te dije:
+                      fuiste la mejor experiencia de mi vida.</div>
+    </div>
+    <div class="back">
+      <img src="images/j/7.webp" alt="">
+      <img src="images/j/8.webp" alt="">
+      <img src="images/j/9.webp" alt="">
+    </div>
     <label for="four"></label>
   </div>
 
   <input type="checkbox" id="three">
   <div id="page3" class="page" (click)="openModal(3)">
-    <div class="front">H</div>
-    <div class="back">A</div>
+    <div class="front">
+      <div>No eres una ola que pasa, eres el océano entero.
+          Desde la primera vez que te miré con asombro,
+          tu nombre navega en mis profundidades.
+
+          Y cuando soy náufrago de mis pensamientos,
+          apareces como una esperanza lejana.</div>
+    </div>
+    <div class="back">
+      <img src="images/j/4.webp" alt="">
+      <img src="images/j/5.webp" alt="">
+      <img src="images/j/6.webp" alt="">
+    </div>
     <label for="three"></label>
   </div>
 
   <input type="checkbox" id="two">
   <div id="page2" class="page" (click)="openModal(2)">
     <div class="front">No importa el tiempo, no importa la distancia, no importar el lugar, estamos destinados a encontrarnos</div>
-    <div class="back">P</div>
+    <div class="back">
+      <img src="images/j/1.webp" alt="">
+      <img src="images/j/2.webp" alt="">
+      <img src="images/j/3.webp" alt="">
+    </div>
     <label for="two"></label>
   </div>
 
